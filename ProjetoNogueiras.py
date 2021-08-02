@@ -7,6 +7,8 @@ st.set_page_config(page_title = "Projeto Nogueiras", layout="centered")
 
 st.title('Projeto Nogueiras')
 
+encod = 'latin-1'
+
 st.markdown(
     '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">',
     unsafe_allow_html=True,
@@ -70,13 +72,13 @@ elif active_tab == "Novo custo":
 		st.write('Aba referente ao lançamento de quaisquer novos custos ao projeto')
 		#ANO / MES / VALOR / CATEGORIA / TIPO-PRODUTO-OU-PESSOA / SUBTIPO / MARCA / TEMPO / QUANTIDADE
 		new_data = [None, None, None, None, None, None, None, None, None] #inicializando um dado vazio
-		with open('Categorias.csv', 'r') as f:
+		with open('Categorias.csv', 'r', encoding = encod) as f:
 			cathegory_options = f.read()
 			cathegory_options = cathegory_options.split('\n')
 			cathegory_options.sort()
 		new_data[3] = st.selectbox('Selecione a categoria do custo:', options = cathegory_options, index = 0, key = 'categoria')
 		if new_data[3] == 'Mão de Obra':
-			with open(str(new_data[3]) + '.csv', 'r') as f:
+			with open(str(new_data[3]) + '.csv', 'r', encoding = encod) as f:
 				opt = f.read()
 				opt = opt.split('\n')
 				opt.sort()
@@ -84,7 +86,7 @@ elif active_tab == "Novo custo":
 			new_data[4] = esquerda.selectbox('Selecione a pessoa:', options = opt, index = 0)
 			new_data[7] = direita.text_input('Preencha o tempo de serviço')
 		elif new_data[3] == 'Aluguel':
-			with open(str(new_data[3]) + '.csv', 'r') as f:
+			with open(str(new_data[3]) + '.csv', 'r', encoding = encod) as f:
 				opt = f.read()
 				opt = opt.split('\n')
 				opt.sort()
@@ -92,19 +94,19 @@ elif active_tab == "Novo custo":
 			new_data[4] = esquerda.selectbox('Selecione o tipo de equipamento alugado:', options = opt, index = 0)
 			new_data[7] = direita.text_input('Preencha o tempo de aluguel, em horas:')
 		elif new_data[3] == 'Consultoria':
-			with open(str(new_data[3]) + '.csv', 'r') as f:
+			with open(str(new_data[3]) + '.csv', 'r', encoding = encod) as f:
 				opt = f.read()
 				opt = opt.split('\n')
 				opt.sort()
 			new_data[4] = st.selectbox('Selecione o tipo de consultoria:', options = opt, index = 0)
 		elif new_data[3] == 'Manutenção':
-			with open(str(new_data[3]) + '.csv', 'r') as f:
+			with open(str(new_data[3]) + '.csv', 'r', encoding = encod) as f:
 				opt = f.read()
 				opt = opt.split('\n')
 				opt.sort()
 			new_data[4] = st.selectbox('Selecione o que recebeu manutenção:', options = opt, index = 0)
 		elif new_data[3] == 'EPI':
-			with open(str(new_data[3]) + '.csv', 'r') as f:
+			with open(str(new_data[3]) + '.csv', 'r', encoding = encod) as f:
 				opt = f.read()
 				opt = opt.split('\n')
 				opt.sort()
@@ -112,15 +114,15 @@ elif active_tab == "Novo custo":
 			new_data[4] = esquerda.selectbox('Selecione o tipo de EPI:', options = opt, index = 0)
 			new_data[8] = direita.text_input('Preencha a quantidade de EPIs comprados:')
 		elif new_data[3] == 'Sanidade':
-			with open(str(new_data[3]) + '.csv', 'r') as f:
+			with open(str(new_data[3]) + '.csv', 'r', encoding = encod) as f:
 				opt = f.read()
 				opt = opt.split('\n')
 				opt.sort()
-			with open(str(new_data[3]) + '_Composição.csv', 'r') as f:
+			with open(str(new_data[3]) + '_Composição.csv', 'r', encoding = encod) as f:
 				opt1 = f.read()
 				opt1 = opt1.split('\n')
 				opt1.sort()
-			with open(str(new_data[3]) + '_Marca.csv', 'r') as f:
+			with open(str(new_data[3]) + '_Marca.csv', 'r', encoding = encod) as f:
 				opt2 = f.read()
 				opt2 = opt2.split('\n')
 				opt2.sort()
@@ -130,11 +132,11 @@ elif active_tab == "Novo custo":
 			new_data[6] = meio.selectbox('Selecione a marca:', options = opt2, index = 0)
 			new_data[8] = direita.text_input('Preencha a quantidade:')
 		elif new_data[3] == 'Adubação':
-			with open(str(new_data[3]) + '.csv', 'r') as f:
+			with open(str(new_data[3]) + '.csv', 'r', encoding = encod) as f:
 				opt = f.read()
 				opt = opt.split('\n')
 				opt.sort()
-			with open(str(new_data[3]) + '_Marca.csv', 'r') as f:
+			with open(str(new_data[3]) + '_Marca.csv', 'r', encoding = encod) as f:
 				opt2 = f.read()
 				opt2 = opt2.split('\n')
 				opt2.sort()
@@ -143,13 +145,13 @@ elif active_tab == "Novo custo":
 			new_data[6] = meio.selectbox('Selecione a marca:', options = opt2, index = 0)
 			new_data[8] = direita.text_input('Preencha a quantidade:')
 			if new_data[4] == 'Adubo inorgânico':
-				with open(str(new_data[3]) + '_Composição.csv', 'r') as f:
+				with open(str(new_data[3]) + '_Composição.csv', 'r', encoding = encod) as f:
 					opt1 = f.read()
 					opt1 = opt1.split('\n')
 					opt1.sort()
 				new_data[5] = st.selectbox('Selecione a composição do adubo:', options = opt1, index = 0)
 		elif new_data[3] == 'Gastos Únicos':
-			with open(str(new_data[3]) + '.csv', 'r') as f:
+			with open(str(new_data[3]) + '.csv', 'r', encoding = encod) as f:
 				opt = f.read()
 				opt = opt.split('\n')
 				opt.sort()
@@ -184,7 +186,7 @@ elif active_tab == "Novo custo":
 				esq, dir, _, _, _, _, _, _, _, _ = st.beta_columns(10)
 				dir.button('Não')
 				if esq.button('Sim'):
-					with open('Dados.csv', 'a+', newline = '') as f:
+					with open('Dados.csv', 'a+', newline = '', encoding = encod) as f:
 						writer = csv.writer(f, delimiter = ';')
 						writer.writerow(new_data)
 					st.write('Custo adicionado à planilha com sucesso!')
@@ -219,7 +221,7 @@ elif active_tab == "Nova opção de custo":
 	with container:
 		st.write('#### Criar uma nova opção de custo.')
 		#st.write('Aba referente à criação de uma nova opção de custo, que poderá ser utilizada na aba "Novo custo"')
-		with open('Categorias.csv', 'r') as f:
+		with open('Categorias.csv', 'r', encoding = encod) as f:
 			cathegory_options = f.read()
 			cathegory_options = cathegory_options.split('\n')
 			cathegory_options.sort()
@@ -228,7 +230,7 @@ elif active_tab == "Nova opção de custo":
 		if categoria != '' and categoria != 'Combustível' and categoria != 'Frete':
 			if categoria != 'Adubação' and categoria != 'Sanidade' and categoria != 'Gastos Únicos':
 				if path.isfile(str(categoria) + '.csv'):
-					with open(str(categoria) + '.csv', 'r') as f:
+					with open(str(categoria) + '.csv', 'r', encoding = encod) as f:
 						content = f.read()
 						content = content.split('\n')
 					if len(content) > 1:
@@ -244,7 +246,7 @@ elif active_tab == "Nova opção de custo":
 					esq, dir, _, _, _, _, _, _, _, _ = st.beta_columns(10)
 					dir.button("Não")
 					if esq.button('Sim'):
-						with open(str(categoria) + '.csv', 'a+', newline = '') as f:
+						with open(str(categoria) + '.csv', 'a+', newline = '', encoding = encod) as f:
 							writer = csv.writer(f, delimiter = ';')
 							writer.writerow([new_data])
 						st.write('Opção de custo adicionada com sucesso!')
@@ -257,7 +259,7 @@ elif active_tab == "Nova opção de custo":
 					opcao2 = ''
 					artigo = 'o'
 				if path.isfile(str(categoria) + str(opcao2) + '.csv'):
-					with open(str(categoria) + str(opcao2) + '.csv', 'r') as f:
+					with open(str(categoria) + str(opcao2) + '.csv', 'r', encoding = encod) as f:
 						content = f.read()
 						content = content.split('\n')
 					if len(content) > 1:
@@ -273,7 +275,7 @@ elif active_tab == "Nova opção de custo":
 					esq, dir, _, _, _, _, _, _, _, _ = st.beta_columns(10)
 					dir.button('Não')
 					if esq.button('Sim'):
-						with open(str(categoria) + str(opcao2) + '.csv', 'a+', newline = '') as f:
+						with open(str(categoria) + str(opcao2) + '.csv', 'a+', newline = '', encoding = encod) as f:
 							writer = csv.writer(f, delimiter = ';')
 							writer.writerow([new_data])
 						st.write('Opção de custo adicionada com sucesso!')
@@ -286,7 +288,7 @@ elif active_tab == "Nova opção de custo":
 					opcao2 = ''
 					artigo = 'o'
 				if path.isfile(str(categoria) + str(opcao2) + '.csv'):
-					with open(str(categoria) + str(opcao2) + '.csv', 'r') as f:
+					with open(str(categoria) + str(opcao2) + '.csv', 'r', encoding = encod) as f:
 						content = f.read()
 						content = content.split('\n')
 					if len(content) > 1:
@@ -302,7 +304,7 @@ elif active_tab == "Nova opção de custo":
 					esq, dir, _, _, _, _, _, _, _, _ = st.beta_columns(10)
 					dir.button('Não')
 					if esq.button('Sim'):
-						with open(str(categoria) + str(opcao2) + '.csv', 'a+', newline = '') as f:
+						with open(str(categoria) + str(opcao2) + '.csv', 'a+', newline = '', encoding = encod) as f:
 							writer = csv.writer(f, delimiter = ';')
 							writer.writerow([new_data])
 						st.write('Opção de custo adicionada com sucesso!')
@@ -313,7 +315,7 @@ elif active_tab == "Nova opção de custo":
 					artigo = 'o'
 					opcao2 = ''
 					if path.isfile(str(categoria) + str(opcao2) + '.csv'):
-						with open(str(categoria) + str(opcao2) + '.csv', 'r') as f:
+						with open(str(categoria) + str(opcao2) + '.csv', 'r', encoding = encod) as f:
 							content = f.read()
 							content = content.split('\n')
 						if len(content) > 1:
@@ -329,13 +331,13 @@ elif active_tab == "Nova opção de custo":
 						esq, dir, _, _, _, _, _, _, _, _ = st.beta_columns(10)
 						dir.button('Não')
 						if esq.button('Sim'):
-							with open(str(categoria) + str(opcao2) + '.csv', 'a+', newline = '') as f:
+							with open(str(categoria) + str(opcao2) + '.csv', 'a+', newline = '', encoding = encod) as f:
 								writer = csv.writer(f, delimiter = ';')
 								writer.writerow([new_data])
 							st.write('Opção de custo adicionada com sucesso!')
 							st.write('Resete as opções através do botão abaixo para inserir uma nova opção de custo.')
 				else:
-					with open(str(categoria) + '.csv', 'r') as f:
+					with open(str(categoria) + '.csv', 'r', encoding = encod) as f:
 						opt = f.read()
 						opt = opt.split('\n')
 						opt.sort()
@@ -346,7 +348,7 @@ elif active_tab == "Nova opção de custo":
 						artigo = 'a'
 						opcao2 = '_' + tipo
 						if path.isfile(str(categoria) + str(opcao2) + '.csv'):
-							with open(str(categoria) + str(opcao2) + '.csv', 'r') as f:
+							with open(str(categoria) + str(opcao2) + '.csv', 'r', encoding = encod) as f:
 								content = f.read()
 								content = content.split('\n')
 							if len(content) > 1:
@@ -362,7 +364,7 @@ elif active_tab == "Nova opção de custo":
 							esq, dir, _, _, _, _, _, _, _, _ = st.beta_columns(10)
 							dir.button('Não')
 							if esq.button('Sim'):
-								with open(str(categoria) + str(opcao2) + '.csv', 'a+', newline = '') as f:
+								with open(str(categoria) + str(opcao2) + '.csv', 'a+', newline = '', encoding = encod) as f:
 									writer = csv.writer(f, delimiter = ';')
 									writer.writerow([new_data])
 								st.write('Opção de custo adicionada com sucesso!')
