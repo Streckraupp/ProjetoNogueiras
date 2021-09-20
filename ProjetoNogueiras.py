@@ -31,7 +31,7 @@ tabs = ["Gráficos", "Novo custo", "Nova entrada", "Nova opção de custo"] #qua
 if "tab" in query_params:
     active_tab = query_params["tab"][3]
 else:
-    active_tab = "Gráficos"
+    active_tab = "Nova opção de custo"
 
 if active_tab not in tabs:
     st.experimental_set_query_params(tab="Gráficos")
