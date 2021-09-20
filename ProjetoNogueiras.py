@@ -1,8 +1,21 @@
 import streamlit as st
-#import pandas as pd
 import csv
 from os import path
 
+#import gspread
+#from google.oauth2.service_account import Credentials
+#from gspread_pandas import Spread, Client
+
+#acessar google drive
+#scope = ['https://spreadsheets.google.com/feeds',
+#         'https://www.googleapis.com/auth/drive']
+#credentials = Credentials.from_service_account_file('./projetonogueiras-a2ce8a460873.json', scopes=scope) #credencial pra acessar o google sheets
+#client = Client(scope=scope, creds=credentials)
+#spread = Spread("Testing", client=client) #nome da planilha aqui, entre aspas
+#spread.df_to_sheet(stocks_df[cols_to_keep]) #como salvar pra google sheets
+#df = spread.sheet_to_df(index = None, header_rows = None) #como carregar um google sheets pra pandas dataframe
+
+#configurações da página
 st.set_page_config(page_title = "Projeto Nogueiras", layout="centered")
 
 st.title('Projeto Nogueiras')
@@ -221,6 +234,11 @@ elif active_tab == "Nova opção de custo":
 	with container:
 		st.write('#### Criar uma nova opção de custo.')
 		#st.write('Aba referente à criação de uma nova opção de custo, que poderá ser utilizada na aba "Novo custo"')
+		#spread = Spread("Categorias", client=client)
+		#cathegory_options = spread.sheet_to_df(index = None, header_rows = None)
+		#cathegory_options.append(pd.DataFrame(['']), ignore_index = True)
+		#cathegory_options = cathegory_options.sort_values(by = 0).reset_index().iloc[:,1]
+		#st.write(cathegory_options)
 		with open('Categorias.csv', 'r', encoding = encod) as f:
 			cathegory_options = f.read()
 			cathegory_options = cathegory_options.split('\n')
@@ -371,10 +389,9 @@ elif active_tab == "Nova opção de custo":
 								st.write('Resete as opções através do botão abaixo para inserir uma nova opção de custo.')
 			else:
 				st.error("Algo de errado ocorreu.")
-		else:
-			if categoria != '':
-				st.write('Essa categoria não necessita de opções.')
-				st.write('Não há necessidade de criar uma nova opção de custo.')
+		elif categoria != '':
+			st.write('Essa categoria não necessita de opções.')
+			st.write('Não há necessidade de criar uma nova opção de custo.')
 
 else:
     st.error("Algo de errado ocorreu.")
