@@ -29,7 +29,7 @@ st.markdown(
 query_params = st.experimental_get_query_params()
 tabs = ["Gráficos", "Novo custo", "Nova entrada", "Nova opção de custo"] #quaisquer novas tabs vão entrar aqui
 if "tab" in query_params:
-    active_tab = query_params["tab"][0]
+    active_tab = query_params["tab"][3]
 else:
     active_tab = "Gráficos"
 
